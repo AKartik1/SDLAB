@@ -1,0 +1,174 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: 'Fira Code', monospace;
+  background: linear-gradient(to bottom, #7d9968, #303b2a);
+  padding-top: 70px;
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #304420;
+  color: white;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container Styling */
+.container {
+  margin: 40px auto;
+  padding: 30px;
+  max-width: 900px;
+  background-color: #f5f5db; 
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+/* Text Styling */
+h1, h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: rgb(0, 0, 0);
+}
+
+/* Button Styling */
+button {
+  font-family: 'Fira Code', monospace;
+  background-color: #e08e11; 
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 150px;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #a85626;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #c97532; /* Orange border */
+  border-radius: 10px;
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+/* Instructions List Styling */
+.instructions-list {
+  list-style-type: none;
+  padding-left: 20px;
+  text-align: left;
+  color: black;
+}
+
+.instructions-list li {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.instructions-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #c97532; /* Orange bullets */
+}
+
+
+/* Styling for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1, h2 {
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+
+  .instructions-list {
+    font-size: 1rem;
+  }
+}
