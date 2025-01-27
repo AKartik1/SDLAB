@@ -8,46 +8,120 @@ function GamePage() {
   // Define questions for each topic
   const questions = {
     Groups: [
-      {
-        question: "Is addition of integers a group?",
-        options: ["Yes", "No"],
-        correctAnswer: "Yes",
-        type: "multipleChoice",
-      },
-      {
-        question: "Is multiplication of even numbers a group?",
-        options: ["Yes", "No"],
-        correctAnswer: "No",
-        type: "multipleChoice",
-      },
+      // Easy
       {
         question: "What is the identity element of addition in integers?",
-        answer: "0",
+        options: ["1", "0", "-1", "2"],
         correctAnswer: "0",
-        type: "fillInTheBlank",
+        difficulty: "easy",
+        type: "multipleChoice",
+      },
+      {
+        question: "Is the set of integers under addition a group?",
+        options: ["Yes", "No", "Only under certain conditions", "Not Sure"],
+        correctAnswer: "Yes",
+        difficulty: "easy",
+        type: "multipleChoice",
+      },
+      {
+        question: "Does the set of natural numbers under multiplication form a group?",
+        options: ["Yes", "No", "Only if 1 is included", "Depends on the operation"],
+        correctAnswer: "No",
+        difficulty: "easy",
+        type: "multipleChoice",
+      },
+      // Medium
+      {
+        question: "Which of these sets forms a cyclic group under addition modulo 5?",
+        options: ["{1, 2, 3, 4, 5}", "{0, 1, 2, 3, 4}", "{1, 3, 5, 7, 9}", "{0, 2, 4, 6, 8}"],
+        correctAnswer: "{0, 1, 2, 3, 4}",
+        difficulty: "medium",
+        type: "multipleChoice",
+      },
+      {
+        question: "Which of the following is NOT a group?",
+        options: [
+          "Integers under addition",
+          "Rational numbers under addition",
+          "Non-zero real numbers under multiplication",
+          "Natural numbers under addition",
+        ],
+        correctAnswer: "Natural numbers under addition",
+        difficulty: "medium",
+        type: "multipleChoice",
+      },
+      // Hard
+      {
+        question: "Which property ensures (a ⋅ b)⁻¹ = b⁻¹ ⋅ a⁻¹ in a group?",
+        options: ["Closure", "Associativity", "Identity", "Inverses"],
+        correctAnswer: "Inverses",
+        difficulty: "hard",
+        type: "multipleChoice",
+      },
+      {
+        question: "Which of these is an example of a non-abelian group?",
+        options: [
+          "Integers under addition",
+          "Symmetric group S3",
+          "Real numbers under multiplication",
+          "Cyclic group of order 4",
+        ],
+        correctAnswer: "Symmetric group S3",
+        difficulty: "hard",
+        type: "multipleChoice",
       },
     ],
     Semigroups: [
+      // Easy
       {
-        question: "Is addition of natural numbers a semigroup?",
-        options: ["Yes", "No"],
-        correctAnswer: "Yes",
+        question: "Which operation forms a semigroup in natural numbers?",
+        options: ["Addition", "Subtraction", "Division", "Exponentiation"],
+        correctAnswer: "Addition",
+        difficulty: "easy",
         type: "multipleChoice",
       },
       {
         question: "Is string concatenation a semigroup?",
-        options: ["Yes", "No"],
+        options: ["Yes", "No", "Sometimes", "Not Sure"],
         correctAnswer: "Yes",
+        difficulty: "easy",
+        type: "multipleChoice",
+      },
+      // Medium
+      {
+        question: "Which property is necessary for a semigroup?",
+        options: ["Identity", "Associativity", "Inverses", "Commutativity"],
+        correctAnswer: "Associativity",
+        difficulty: "medium",
         type: "multipleChoice",
       },
       {
-        question: "Is multiplication of rational numbers a semigroup?",
-        options: ["Yes", "No"],
-        correctAnswer: "Yes",
+        question: "Which of these sets forms a semigroup under multiplication?",
+        options: ["Natural Numbers", "Integers", "Matrices", "Strings"],
+        correctAnswer: "Matrices",
+        difficulty: "medium",
         type: "multipleChoice",
       },
-    
-    
+      // Hard
+      {
+        question: "Which of these is a semigroup but NOT a monoid?",
+        options: [
+          "Strings under concatenation",
+          "Natural numbers under addition",
+          "Natural numbers under subtraction",
+          "Even integers under addition",
+        ],
+        correctAnswer: "Natural numbers under subtraction",
+        difficulty: "hard",
+        type: "multipleChoice",
+      },
+      {
+        question: "Which property differentiates a semigroup from a group?",
+        options: ["Closure", "Associativity", "Identity", "Inverse"],
+        correctAnswer: "Identity",
+        difficulty: "hard",
+        type: "multipleChoice",
+      },
     ],
   };
 
@@ -79,9 +153,7 @@ function GamePage() {
   // Handle answer selection
   const handleAnswer = (answer) => {
     const currentQuestion = currentQuestions[currentQuestionIndex];
-    const isCorrect =
-      (currentQuestion.type === "multipleChoice" && answer === currentQuestion.correctAnswer) ||
-      (currentQuestion.type === "fillInTheBlank" && answer.trim() === currentQuestion.correctAnswer);
+    const isCorrect = answer === currentQuestion.correctAnswer;
 
     // Save user answer (for later feedback)
     setUserAnswers((prevAnswers) => [
@@ -128,28 +200,17 @@ function GamePage() {
               ></div>
             </div>
             <p>{currentQuestions[currentQuestionIndex]?.question}</p>
-            {currentQuestions[currentQuestionIndex]?.type === "multipleChoice" ? (
-              <div>
-                {currentQuestions[currentQuestionIndex]?.options.map((option) => (
-                  <button
-                    key={option}
-                    onClick={() => handleAnswer(option)}
-                    className="game-button"
-                  >
-                    {option}
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your answer"
-                  onChange={(e) => handleAnswer(e.target.value)}
-                  className="game-input"
-                />
-              </div>
-            )}
+            <div>
+              {currentQuestions[currentQuestionIndex]?.options.map((option) => (
+                <button
+                  key={option}
+                  onClick={() => handleAnswer(option)}
+                  className="game-button"
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
             <p>Time Left: {timer}s</p>
           </div>
         )}
@@ -181,3 +242,4 @@ function GamePage() {
 }
 
 export default GamePage;
+
