@@ -132,6 +132,9 @@ function GamePage() {
   const [timer, setTimer] = useState(30); // Timer for each question
   const [intervalId, setIntervalId] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]); // Store user answers for later feedback
+  const [level, setLevel] = useState(1); // Level system
+  const [badges, setBadges] = useState([]); // Badges system
+  const [rewardMessage, setRewardMessage] = useState(""); // Reward message
 
   // Fetch current questions based on topic
   const currentQuestions = questions[topicName] || [];
@@ -166,6 +169,21 @@ function GamePage() {
       setScore(score + 1);
     }
 
+    // Check for level up
+    if (score % 5 === 0 && score > 0) {
+      const newLevel = Math.floor(score / 5) + 1;
+      if (newLevel > level) {
+        setLevel(newLevel);
+        setRewardMessage(`Congratulations! You've leveled up to Level ${newLevel}!`);
+      }
+    }
+
+    // Check for badges
+    if (score === currentQuestions.length) {
+      setBadges((prevBadges) => [...prevBadges, "Perfect Score Badge"]);
+      setRewardMessage("Congrats on earning the Perfect Score Badge!");
+    }
+
     // Move to next question or end game
     if (currentQuestionIndex < currentQuestions.length - 1) {
       setTimeout(() => {
@@ -184,6 +202,9 @@ function GamePage() {
     setTimer(30);
     setGameState("playing");
     setUserAnswers([]); // Clear previous answers
+    setLevel(1); // Reset level
+    setBadges([]); // Clear badges
+    setRewardMessage(""); // Reset reward message
   };
 
   return (
@@ -217,6 +238,14 @@ function GamePage() {
         {gameState === "ended" && (
           <div>
             <p>Game Over! Your score: {score}/{currentQuestions.length}</p>
+            <p>Level: {level}</p>
+            {rewardMessage && <p>{rewardMessage}</p>}
+            <h3>Badges:</h3>
+            <ul>
+              {badges.map((badge, index) => (
+                <li key={index}>{badge}</li>
+              ))}
+            </ul>
             <div>
               <h3>Feedback:</h3>
               <ul className="instructions-list">
@@ -242,4 +271,3 @@ function GamePage() {
 }
 
 export default GamePage;
-
