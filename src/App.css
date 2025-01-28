@@ -151,6 +151,33 @@ input[type="text"] {
   border-radius: 50%;
   background-color: #c97532; /* Orange bullets */
 }
+.difficulty-level {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  background-color: #f5f5db;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0c0c0c;
+}
+
+
+.navigation-buttons button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #afa74c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.navigation-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 
 /* Styling for smaller screens */
